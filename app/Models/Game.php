@@ -2,9 +2,25 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
-    //
+    use HasFactory;
+
+    protected $table = 'games';
+
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'image',
+    ];
+
+    // Relasi ke Order (satu game bisa punya banyak order)
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
