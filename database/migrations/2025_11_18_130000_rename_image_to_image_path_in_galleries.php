@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('orders')) {
-            Schema::create('orders', function (Blueprint $table) {
-                $table->id();
-                $table->timestamps();
-            });
-        }
+        Schema::table('galleries', function (Blueprint $table) {
+            $table->renameColumn('image', 'image_path');
+        });
     }
 
     /**
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::table('galleries', function (Blueprint $table) {
+            $table->renameColumn('image_path', 'image');
+        });
     }
 };

@@ -23,7 +23,7 @@ class GalleryController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
             'description' => 'nullable|string',
         ]);
 
@@ -31,7 +31,7 @@ class GalleryController extends Controller
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('uploads/galleries'), $imageName);
-            $validated['image'] = 'uploads/galleries/' . $imageName;
+            $validated['image_path'] = 'uploads/galleries/' . $imageName;
         }
 
         Gallery::create($validated);
@@ -54,7 +54,7 @@ class GalleryController extends Controller
         $gallery = Gallery::findOrFail($id);
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
             'description' => 'nullable|string',
         ]);
 
@@ -62,7 +62,7 @@ class GalleryController extends Controller
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('uploads/galleries'), $imageName);
-            $validated['image'] = 'uploads/galleries/' . $imageName;
+            $validated['image_path'] = 'uploads/galleries/' . $imageName;
         }
 
         $gallery->update($validated);

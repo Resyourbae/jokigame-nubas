@@ -36,6 +36,9 @@
                 <a href="{{ route('admin.galleries.index') }}" class="block px-4 py-3 rounded-lg bg-purple-600 text-white font-semibold hover:bg-purple-700 transition">
                     🖼️ Kelola Galeri
                 </a>
+                <a href="{{ route('admin.orders.index') }}" class="block px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-800 transition">
+                    🧾 Kelola Orders
+                </a>
             </nav>
         </aside>
 
@@ -74,7 +77,7 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-300 mb-2">Gambar Saat Ini</label>
                         <div class="bg-gray-800 rounded-lg overflow-hidden h-48">
-                            <img src="{{ asset($gallery->image) }}" alt="{{ $gallery->title }}" class="w-full h-full object-cover">
+                            <img src="{{ asset($gallery->image_path) }}" alt="{{ $gallery->title }}" class="w-full h-full object-cover">
                         </div>
                     </div>
 

@@ -64,7 +64,7 @@
                 @forelse ($galleries as $gallery)
                     <div class="bg-gray-900 border border-purple-600 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-purple-600 transition">
                         <div class="bg-gray-800 h-48 overflow-hidden">
-                            <img src="{{ asset($gallery->image) }}" alt="{{ $gallery->title }}" class="w-full h-full object-cover hover:scale-105 transition">
+                            <img src="{{ asset($gallery->image_path) }}" alt="{{ $gallery->title }}" class="w-full h-full object-cover hover:scale-105 transition">
                         </div>
                         <div class="p-4">
                             <h3 class="text-lg font-bold text-white mb-2">{{ $gallery->title }}</h3>

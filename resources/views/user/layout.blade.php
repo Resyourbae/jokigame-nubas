@@ -26,6 +26,14 @@
                     Trusted Game Boosting Service
                 </div>
 
+                <!-- Lottie Animation - Mobile View (Between Badge and Heading) -->
+                <div class="flex md:hidden justify-center my-6">
+                    <div class="w-56 h-56 sm:w-64 sm:h-64 flex items-center justify-center">
+                        <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+                        <dotlottie-wc src="https://lottie.host/f5d6707f-ac24-4e50-9dd0-03cc80fe6004/8fNNUtK6pH.lottie" style="width: 100%; height: 100%;" autoplay loop></dotlottie-wc>
+                    </div>
+                </div>
+
                 <!-- Main Heading -->
                 <h1 class="text-4xl md:text-5xl font-bold text-[#FFEE2F] mb-6 leading-tight">
                     Jasa Joki Game Online Profesional
@@ -50,7 +58,7 @@
                 </div>
             </div>
 
-            <!-- Right Content - Illustration -->
+            <!-- Right Content - Illustration (Desktop) -->
             <div class="hidden md:flex justify-center">
                 <div class="relative w-full max-w-md ml-9">
                     <!-- Placeholder untuk gambar/ilustrasi -->
@@ -121,10 +129,10 @@
             <p class="text-center text-lg text-gray-300 mb-12 font-display">Berbagai pilihan layanan joki untuk game favorit Anda</p>
             
             <!-- Services Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 @forelse($games as $game)
                     <!-- Service Card -->
-                    <div class="relative group overflow-hidden rounded-2xl h-96 cursor-pointer" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="relative group overflow-hidden rounded-2xl h-64 sm:h-72 md:h-80 lg:h-96 cursor-pointer" data-aos="fade-up" data-aos-duration="1000">
                         <!-- Background Image -->
                         <div class="absolute inset-0">
                             @if($game->image)
@@ -176,9 +184,117 @@
             </div>
         </div>
     </div>
+
+    {{-- galeri --}}
+    <div id="galeri" class="bg-linear-to-r from-tentangkami1 to-tentangkami2 py-12 md:py-20">
+        <div class="container mx-auto px-6">
+            <h1 class="text-center text-gray-100 font-bold text-2xl mb-4">Galeri Kami</h1>
+            <p class="text-center text-lg text-gray-300 mb-12 font-display">Lihat hasil kerja dan testimoni dari pelanggan kami</p>
+            
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" id="gallery-grid">
+                @forelse($galleries as $gallery)
+                    <!-- Gallery Item -->
+                    <div class="relative group overflow-hidden rounded-2xl cursor-pointer gallery-card h-56 sm:h-64 md:h-72 lg:h-80" 
+                         data-gallery-id="{{ $gallery->id }}"
+                         data-gallery-title="{{ $gallery->title }}"
+                         data-gallery-desc="{{ $gallery->description }}"
+                         data-gallery-image="{{ asset($gallery->image_path) }}"
+                         data-aos="fade-up" data-aos-duration="1000">
+                        <!-- Background Image -->
+                        <div class="absolute inset-0">
+                            @if($gallery->image_path)
+                                <img src="{{ asset($gallery->image_path) }}" alt="{{ $gallery->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            @else
+                                <div class="w-full h-full bg-linear-to-br from-purple-600 to-purple-900 flex items-center justify-center text-6xl">
+                                    🖼️
+                                </div>
+                            @endif
+                        </div>
+
+                        <!-- Content Overlay -->
+                        <div class="absolute inset-0 flex flex-col justify-end z-10">
+                            <!-- Bottom Section with Info - Purple Background Full Width -->
+                            <div class="bg-gradient-to-b from-purple-600/80 to-purple-700/90 p-4 space-y-2 transform transition-transform duration-500 group-hover:translate-y-full">
+                                <!-- Gallery Title -->
+                                <h3 class="text-white font-bold text-lg truncate">{{ $gallery->title }}</h3>
+                                <!-- Description as subtitle -->
+                                <p class="text-gray-100 text-sm line-clamp-2 leading-tight">{{ $gallery->description }}</p>
+                            </div>
+                        </div>
+
+                        <!-- Hover Overlay (Only on hover) -->
+                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition duration-300"></div>
+                    </div>
+                @empty
+                    <!-- Empty State -->
+                    <div class="col-span-full text-center py-12">
+                        <p class="text-gray-400 text-lg">Belum ada galeri yang ditambahkan</p>
+                    </div>
+                @endforelse
+            </div>
+        </div>
+    </div>
+
+    {{-- kontak --}}
+    <div id="kontak" class="bg-linear-to-r from-layanan1 to-layanan2 py-12 md:py-20">
+        <h1 class="text-center text-gray-100 font-bold text-2xl mb-4">Hubungi Kami</h1>
+        <p class="text-center text-lg text-gray-300 mb-12 font-display">Siap untuk meningkatkan performa game Anda? Hubungi kami
+            sekarang!
+        </p>
+    </div>
 </body> 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init();
+
+  // Gallery Modal handlers
+  const galleryOverlay = document.createElement('div');
+  galleryOverlay.id = 'gallery-modal-overlay';
+  galleryOverlay.className = 'fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50';
+  galleryOverlay.style.display = 'none';
+  galleryOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.4)';
+  galleryOverlay.innerHTML = `
+    <div class="bg-gray-900 rounded-lg p-6 w-11/12 md:w-2/3 lg:w-1/2 text-white max-h-[90vh] overflow-y-auto border-1 border-fuchsia-600">
+      <button id="gallery-modal-close" class="float-right text-gray-400 text-2xl cursor-pointer hover:text-gray-200 transition"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" 
+        fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x">
+        <path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+      <div class="clear-both"></div>
+      <h2 id="gallery-modal-title" class="text-2xl font-bold mb-4"></h2>
+      <img id="gallery-modal-image" src="" alt="" class="w-full rounded-lg mb-4" />
+      <p id="gallery-modal-desc" class="text-gray-300"></p>
+    </div>
+  `;
+  document.body.appendChild(galleryOverlay);
+
+  const galleryModalOverlay = document.getElementById('gallery-modal-overlay');
+  const galleryModalTitle = document.getElementById('gallery-modal-title');
+  const galleryModalImage = document.getElementById('gallery-modal-image');
+  const galleryModalDesc = document.getElementById('gallery-modal-desc');
+
+  // Handle gallery card clicks
+  document.querySelectorAll('.gallery-card').forEach(card => {
+    card.addEventListener('click', () => {
+      galleryModalTitle.innerText = card.dataset.galleryTitle;
+      galleryModalImage.src = card.dataset.galleryImage;
+      galleryModalImage.alt = card.dataset.galleryTitle;
+      galleryModalDesc.innerText = card.dataset.galleryDesc;
+      galleryModalOverlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  document.getElementById('gallery-modal-close').addEventListener('click', () => {
+    galleryModalOverlay.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  });
+
+  // Close modal jika klik di luar modal
+  galleryModalOverlay.addEventListener('click', (e) => {
+    if (e.target === galleryModalOverlay) {
+      galleryModalOverlay.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  });
 </script>
 </html>

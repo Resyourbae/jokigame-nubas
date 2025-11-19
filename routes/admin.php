@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\OrderController;
 
 // Route Login Admin
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('admin.login');
@@ -20,6 +21,9 @@ Route::middleware(['auth.admin'])->group(function () {
 
     // CRUD Galeri
     Route::resource('/galleries', GalleryController::class, ['as' => 'admin']);
+
+    // Order management
+    Route::resource('/orders', OrderController::class, ['as' => 'admin']);
 });
 
 
