@@ -37,9 +37,29 @@
     </ul>
 
     <!-- Tombol Admin Desktop -->
-    <a href="{{ route('admin.login') }}" class="hidden lg:block bg-yellow-400 text-black font-medium px-4 py-1.5 rounded-md hover:bg-yellow-300 transition">
-      Admin
-    </a>
+    @guest
+      <div class="hidden lg:flex space-x-3">
+        <a href="{{ route('login') }}" class="bg-transparent border border-yellow-400 text-yellow-400 font-medium px-4 py-1.5 rounded-md hover:bg-yellow-400 hover:text-black transition">
+          Masuk
+        </a>
+        <a href="{{ route('register') }}" class="bg-yellow-400 text-black font-medium px-4 py-1.5 rounded-md hover:bg-yellow-300 transition">
+          Daftar
+        </a>
+      </div>
+    @else
+      <div class="hidden lg:flex items-center space-x-4">
+        <span class="text-yellow-400 font-semibold">{{ Auth::user()->name }}</span>
+        <div class="flex items-center space-x-2">
+          <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=fbbf24&color=000" alt="profile" class="w-10 h-10 rounded-full border-2 border-yellow-400">
+        </div>
+        <form method="POST" action="{{ route('logout') }}" class="inline">
+          @csrf
+          <button type="submit" class="bg-red-600 text-white font-medium px-4 py-1.5 rounded-md hover:bg-red-700 transition">
+            Keluar
+          </button>
+        </form>
+      </div>
+    @endguest
   </div>
 
   <!-- Menu Mobile -->
@@ -49,7 +69,25 @@
     <li><a href="#layanan" class="block hover:text-yellow-400 transition py-2">Layanan</a></li>
     <li><a href="#galeri" class="block hover:text-yellow-400 transition py-2">Galeri</a></li>
     <li><a href="#kontak" class="block hover:text-yellow-400 transition py-2">Kontak</a></li>
-    <li><a href="{{ route('admin.login') }}" class="block w-full bg-yellow-400 text-black font-medium px-4 py-2 rounded-md hover:bg-yellow-300 transition text-center">Admin</a></li>
+    @guest
+      <li><a href="{{ route('login') }}" class="block w-full bg-transparent border border-yellow-400 text-yellow-400 font-medium px-4 py-2 rounded-md hover:bg-yellow-400 hover:text-black transition text-center">Masuk</a></li>
+      <li><a href="{{ route('register') }}" class="block w-full bg-yellow-400 text-black font-medium px-4 py-2 rounded-md hover:bg-yellow-300 transition text-center">Daftar</a></li>
+    @else
+      <li class="py-2 border-t border-gray-600">
+        <div class="flex items-center space-x-2">
+          <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=fbbf24&color=000" alt="profile" class="w-8 h-8 rounded-full border-2 border-yellow-400">
+          <span class="text-yellow-400 font-semibold">{{ Auth::user()->name }}</span>
+        </div>
+      </li>
+      <li>
+        <form method="POST" action="{{ route('logout') }}" class="w-full">
+          @csrf
+          <button type="submit" class="block w-full bg-red-600 text-white font-medium px-4 py-2 rounded-md hover:bg-red-700 transition text-center">
+            Keluar
+          </button>
+        </form>
+      </li>
+    @endguest
   </ul>
 </nav>
 

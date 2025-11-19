@@ -51,7 +51,7 @@
                         <span>Lihat layanan</span>
                         <span>→</span>
                     </a>
-                    <a href="#hubungi" class="bg-white hover:bg-gray-100 text-black font-semibold px-6 py-3 rounded-md transition delay-100 duration-200 hover:shadow-md hover:shadow-gray-500
+                    <a href="#kontak" class="bg-white hover:bg-gray-100 text-black font-semibold px-6 py-3 rounded-md transition delay-100 duration-200 hover:shadow-md hover:shadow-gray-500
                      ease-in-out hover:-translate-y-1 hover:scale-100 items-center text-center">
                         Hubungi Kami
                     </a>
