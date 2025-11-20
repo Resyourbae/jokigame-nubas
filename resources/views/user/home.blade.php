@@ -1,200 +1,273 @@
 @extends('user.layout')
 
+@section('title', 'Beranda - Ressz Joki')
+
 @section('content')
 
-{{-- navbar --}}
-<nav id="navbar" class="fixed top-0 left-0 right-0 w-full z-50 bg-linear-to-r from-ungutuwak to-unguagakmuda px-6 py-3 border-b border-b-fuchsia-600 opacity-100 shadow-lg backdrop-blur-md">
-  <div class="flex items-center justify-between">
-    <!-- Logo -->
-    <div class="flex items-center space-x-3">
-      <img src="logo.png" alt="logo" class="w-13 h-13 ml-4">
-      <span class="text-[#FFEE2F] font-bold italic font-display text-xl">Reszz Joki</span>
+{{-- hero --}}
+<section class="bg-linear-to-r from-header1 to-header2 py-12 pt-20 md:py-20">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center ">
+            <!-- Left Content -->
+            <div class="text-white">
+                <!-- Badge -->
+                <div class="inline-block bg-[#6D19B1] px-2 py-1 rounded-md text-sm font-semibold border border-b-fuchsia-600 mb-2">
+                    Trusted Game Boosting Service
+                </div>
+
+                <!-- Lottie Animation - Mobile View (Between Badge and Heading) -->
+                <div class="flex md:hidden justify-center my-6">
+                    <div class="w-56 h-56 sm:w-64 sm:h-64 flex items-center justify-center">
+                        <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+                        <dotlottie-wc src="https://lottie.host/f5d6707f-ac24-4e50-9dd0-03cc80fe6004/8fNNUtK6pH.lottie" style="width: 100%; height: 100%;" autoplay loop></dotlottie-wc>
+                    </div>
+                </div>
+
+                <!-- Main Heading -->
+                <h1 class="text-4xl md:text-5xl font-bold text-[#FFEE2F] mb-6 leading-tight">
+                    Jasa Joki Game Online Profesional
+                </h1>
+
+                <!-- Description -->
+                <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                    Tingkatkan rank dan level game favorit Anda dengan aman dan cepat. Kami melayani berbagai game populer dengan jaminan keamanan 100%
+                </p>
+
+                <!-- Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#layanan" class="bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-semibold px-6 py-3 rounded-md transition delay-100 duration-200 hover:shadow-md hover:shadow-purple-500
+                     ease-in-out hover:-translate-y-1 hover:scale-100 inline-flex items-center justify-center gap-2">
+                        <span>Lihat layanan</span>
+                        <span>→</span>
+                    </a>
+                    <a href="#kontak" class="bg-white hover:bg-gray-100 text-black font-semibold px-6 py-3 rounded-md transition delay-100 duration-200 hover:shadow-md hover:shadow-gray-500
+                     ease-in-out hover:-translate-y-1 hover:scale-100 items-center text-center">
+                        Hubungi Kami
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Content - Illustration (Desktop) -->
+            <div class="hidden md:flex justify-center">
+                <div class="relative w-full max-w-md ml-9">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+                        <dotlottie-wc src="https://lottie.host/f5d6707f-ac24-4e50-9dd0-03cc80fe6004/8fNNUtK6pH.lottie" style="width: 1200px;height: 1200px" autoplay loop></dotlottie-wc>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
 
-    <!-- Hamburger Menu (Mobile) -->
-    <button id="hamburger" class="lg:hidden flex items-center justify-center cursor-pointer relative w-7 h-7">
-      <!-- Hamburger Icon -->
-      <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute transition-all duration-300">
-        <path d="M4 6h16"/>
-        <path d="M4 12h16"/>
-        <path d="M4 18h16"/>
-      </svg>
+{{-- tentang kami --}}
+<div id="tentang-kami" class="bg-linear-to-r from-tentangkami1 to-tentangkami2 py-12 md:py-20">
+    <div class="container mx-auto px-6">
+        <h1 class="text-center text-2xl text-gray-100 font-bold font-display mb-4">Tentang Kami</h1>
+        <p class="text-center text-lg text-gray-300 mb-12 font-display">Ressz Joki adalah layanan joki game online terpercaya dengan pengalaman lebih dari 5 tahun</p>
+        
+        <!-- Cards Container -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Card 1: 100% Aman -->
+            <div class="bg-gray-900 bg-opacity-50 border border-purple-600 rounded-lg p-6 hover:shadow-lg hover:shadow-purple-600 transition delay-200 duration-400 ease-in-out hover:-translate-y-1 hover:scale-100" data-aos="fade-up" data-aos-duration="1000">
+                <div class="flex items-center justify-center w-12 h-12 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#b223e7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check-icon lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                <h3 class="text-white text-lg font-bold mb-3">100% Aman</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">Keamanan akun Anda adalah prioritas utama kami. Semua proses dilakukan dengan metode yang aman dan terpercaya.</p>
+            </div>
 
-      <!-- Close Icon -->
-      <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute transition-all duration-300 opacity-0 scale-0 rotate-90">
-        <path d="M18 6l-12 12"/>
-        <path d="M6 6l12 12"/>
-      </svg>
-    </button>
+            <!-- Card 2: Proses Cepat -->
+            <div class="bg-gray-900 bg-opacity-50 border border-purple-600 rounded-lg p-6 hover:shadow-lg hover:shadow-purple-600 transition delay-200 duration-400 ease-in-out hover:-translate-y-1 hover:scale-100" data-aos="fade-up" data-aos-duration="1000">
+                <div class="flex items-center justify-center w-12 h-12 mb-4">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#b223e7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap-icon lucide-zap"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+                </div>
+                <h3 class="text-white text-lg font-bold mb-3">Proses Cepat</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">Tim profesional kami bekerja cepat dan efisien untuk menyelesaikan pesanan Anda tepat waktu.</p>
+            </div>
 
-    <!-- Menu Desktop -->
-    <ul class="hidden lg:flex space-x-6 ml-140 text-gray-200">
-      <li><a href="#" class="hover:text-yellow-400 transition">Beranda</a></li>
-      <li><a href="#tentang-kami" class="hover:text-yellow-400 transition">Tentang</a></li>
-      <li><a href="#layanan" class="hover:text-yellow-400 transition">Layanan</a></li>
-      <li><a href="#galeri" class="hover:text-yellow-400 transition">Galeri</a></li>
-      <li><a href="#kontak" class="hover:text-yellow-400 transition">Kontak</a></li>
-    </ul>
-
-    <!-- Tombol Admin Desktop -->
-    @guest
-      <div class="hidden lg:flex space-x-3">
-        <a href="{{ route('login') }}" class="bg-transparent border border-yellow-400 text-yellow-400 font-medium px-4 py-1.5 rounded-md hover:bg-yellow-400 hover:text-black transition">
-          Masuk
-        </a>
-        <a href="{{ route('register') }}" class="bg-yellow-400 text-black font-medium px-4 py-1.5 rounded-md hover:bg-yellow-300 transition">
-          Daftar
-        </a>
-      </div>
-    @else
-      <div class="hidden lg:flex items-center space-x-4">
-        <span class="text-yellow-400 font-semibold">{{ Auth::user()->name }}</span>
-        <div class="flex items-center space-x-2">
-          <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=fbbf24&color=000" alt="profile" class="w-10 h-10 rounded-full border-2 border-yellow-400">
+            <!-- Card 3: Terpercaya -->
+            <div class="bg-gray-900 bg-opacity-50 border border-purple-600 rounded-lg p-6 hover:shadow-lg hover:shadow-purple-600 transition delay-200 duration-400 ease-in-out hover:-translate-y-1 hover:scale-100" data-aos="fade-up" data-aos-duration="1000">
+                <div class="flex items-center justify-center w-12 h-12 mb-4">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#b223e7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                </div>
+                <h3 class="text-white text-lg font-bold mb-3">Terpercaya</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">Ribuan pelanggan puas telah mempercayai layanan kami. Rating 4.9/5 dari 1000+ review.</p>
+            </div>
         </div>
-        <form method="POST" action="{{ route('logout') }}" class="inline">
-          @csrf
-          <button type="submit" class="bg-red-600 text-white font-medium px-4 py-1.5 rounded-md hover:bg-red-700 transition">
-            Keluar
-          </button>
-        </form>
-      </div>
-    @endguest
-  </div>
+    </div>
+</div>
 
-  <!-- Menu Mobile -->
-  <ul id="mobile-menu" class="hidden flex-col space-y-3 mt-4 text-gray-200 lg:hidden mobile-menu-transition">
-    <li><a href="#" class="block hover:text-yellow-400 transition py-2">Beranda</a></li>
-    <li><a href="#tentang-kami" class="block hover:text-yellow-400 transition py-2">Tentang</a></li>
-    <li><a href="#layanan" class="block hover:text-yellow-400 transition py-2">Layanan</a></li>
-    <li><a href="#galeri" class="block hover:text-yellow-400 transition py-2">Galeri</a></li>
-    <li><a href="#kontak" class="block hover:text-yellow-400 transition py-2">Kontak</a></li>
-    @guest
-      <li><a href="{{ route('login') }}" class="block w-full bg-transparent border border-yellow-400 text-yellow-400 font-medium px-4 py-2 rounded-md hover:bg-yellow-400 hover:text-black transition text-center">Masuk</a></li>
-      <li><a href="{{ route('register') }}" class="block w-full bg-yellow-400 text-black font-medium px-4 py-2 rounded-md hover:bg-yellow-300 transition text-center">Daftar</a></li>
-    @else
-      <li class="py-2 border-t border-gray-600">
-        <div class="flex items-center space-x-2">
-          <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=fbbf24&color=000" alt="profile" class="w-8 h-8 rounded-full border-2 border-yellow-400">
-          <span class="text-yellow-400 font-semibold">{{ Auth::user()->name }}</span>
+{{-- layanan kami --}}
+<div id="layanan" class="bg-linear-to-r from-layanan1 to-layanan2 py-12 md:py-20">
+    <div class="container mx-auto px-6">
+        <h1 class="text-center text-gray-100 font-bold text-2xl mb-4">Layanan Kami</h1>
+        <p class="text-center text-lg text-gray-300 mb-12 font-display">Berbagai pilihan layanan joki untuk game favorit Anda</p>
+        
+        <!-- Services Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            @forelse($games as $game)
+                <!-- Service Card -->
+                <div class="relative group overflow-hidden rounded-2xl h-64 sm:h-72 md:h-80 lg:h-96 cursor-pointer" data-aos="fade-up" data-aos-duration="1000">
+                    <!-- Background Image -->
+                    <div class="absolute inset-0">
+                        @if($game->image)
+                            <img src="{{ asset('uploads/games/' . $game->image) }}" alt="{{ $game->name }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        @else
+                            <div class="w-full h-full bg-linear-to-br from-purple-600 to-purple-900 flex items-center justify-center text-6xl">
+                                🎮
+                            </div>
+                        @endif
+                        <!-- Dark Overlay Gradient Base -->
+                        <div class="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent opacity-80"></div>
+                        
+                        <!-- Additional Dark Overlay on Hover -->
+                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition duration-300"></div>
+                    </div>
+
+                    <!-- Content Overlay -->
+                    <div class="absolute inset-0 flex flex-col justify-between p-6 z-10">
+                        <!-- Top Section (empty for spacing) -->
+                        <div></div>
+
+                        <!-- Bottom Section with Info -->
+                        <div class="space-y-4">
+                            <!-- Game Name -->
+                            <div>
+                                <h3 class="text-[#FFEE2F] font-bold text-2xl mb-2 truncate">{{ $game->name }}</h3>
+                                <!-- Description as subtitle -->
+                                <p class="text-white text-sm line-clamp-2 leading-tight">{{ $game->description }}</p>
+                            </div>
+
+                            <!-- Price -->
+                            <p class="text-pink-400 font-bold text-lg">
+                                Mulai {{ number_format($game->price, 0, ',', '.') }}
+                            </p>
+
+                            <!-- Detail Button -->
+                            <a href="#" class="block w-full bg-gray-400 hover:bg-gray-500 text-black text-center py-3 rounded-lg font-bold text-sm transition duration-300 transform hover:scale-105">
+                                Lihat Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <!-- Empty State -->
+                <div class="col-span-full text-center py-12">
+                    <p class="text-gray-400 text-lg">Belum ada layanan yang tersedia</p>
+                </div>
+            @endforelse
         </div>
-      </li>
-      <li>
-        <form method="POST" action="{{ route('logout') }}" class="w-full">
-          @csrf
-          <button type="submit" class="block w-full bg-red-600 text-white font-medium px-4 py-2 rounded-md hover:bg-red-700 transition text-center">
-            Keluar
-          </button>
-        </form>
-      </li>
-    @endguest
-  </ul>
-</nav>
+    </div>
+</div>
 
-<style>
-  .mobile-menu-transition {
-    animation: slideDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    transform-origin: top;
-  }
+{{-- galeri --}}
+<div id="galeri" class="bg-linear-to-r from-tentangkami1 to-tentangkami2 py-12 md:py-20">
+    <div class="container mx-auto px-6">
+        <h1 class="text-center text-gray-100 font-bold text-2xl mb-4">Galeri Kami</h1>
+        <p class="text-center text-lg text-gray-300 mb-12 font-display">Lihat hasil kerja dan testimoni dari pelanggan kami</p>
+        
+        <!-- Gallery Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" id="gallery-grid">
+            @forelse($galleries as $gallery)
+                <!-- Gallery Item -->
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer gallery-card h-56 sm:h-64 md:h-72 lg:h-80" 
+                     data-gallery-id="{{ $gallery->id }}"
+                     data-gallery-title="{{ $gallery->title }}"
+                     data-gallery-desc="{{ $gallery->description }}"
+                     data-gallery-image="{{ asset($gallery->image_path) }}"
+                     data-aos="fade-up" data-aos-duration="1000">
+                    <!-- Background Image -->
+                    <div class="absolute inset-0">
+                        @if($gallery->image_path)
+                            <img src="{{ asset($gallery->image_path) }}" alt="{{ $gallery->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        @else
+                            <div class="w-full h-full bg-linear-to-br from-purple-600 to-purple-900 flex items-center justify-center text-6xl">
+                                🖼️
+                            </div>
+                        @endif
+                    </div>
 
-  .mobile-menu-transition.hidden {
-    animation: slideUp 0.3s cubic-bezier(0.33, 0, 0.67, 0.33) forwards;
-  }
+                    <!-- Content Overlay -->
+                    <div class="absolute inset-0 flex flex-col justify-end z-10">
+                        <!-- Bottom Section with Info - Purple Background Full Width -->
+                        <div class="bg-linear-to-b from-purple-600/80 to-purple-700/90 p-4 space-y-2 transform transition-transform duration-500 group-hover:translate-y-full">
+                            <!-- Gallery Title -->
+                            <h3 class="text-white font-bold text-lg truncate">{{ $gallery->title }}</h3>
+                            <!-- Description as subtitle -->
+                            <p class="text-gray-100 text-sm line-clamp-2 leading-tight">{{ $gallery->description }}</p>
+                        </div>
+                    </div>
 
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-15px);
-      max-height: 0;
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-      max-height: 500px;
-    }
-  }
+                    <!-- Hover Overlay (Only on hover) -->
+                    <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition duration-300"></div>
+                </div>
+            @empty
+                <!-- Empty State -->
+                <div class="col-span-full text-center py-12">
+                    <p class="text-gray-400 text-lg">Belum ada galeri yang ditambahkan</p>
+                </div>
+            @endforelse
+        </div>
+    </div>
+</div>
 
-  @keyframes slideUp {
-    from {
-      opacity: 1;
-      transform: translateY(0);
-      max-height: 500px;
-    }
-    to {
-      opacity: 0;
-      transform: translateY(-15px);
-      max-height: 0;
-    }
-  }
-
-  /* Icon animations */
-  #hamburger-icon.active {
-    opacity: 0;
-    scale: 0;
-    rotate: -90deg;
-  }
-
-  #close-icon.active {
-    opacity: 1;
-    scale: 1;
-    rotate: 0deg;
-  }
-</style>
+{{-- kontak --}}
+<div id="kontak" class="bg-linear-to-r from-layanan1 to-layanan2 py-12 md:py-20">
+    <h1 class="text-center text-gray-100 font-bold text-2xl mb-4">Hubungi Kami</h1>
+    <p class="text-center text-lg text-gray-300 mb-12 font-display">Siap untuk meningkatkan performa game Anda? Hubungi kami sekarang!</p>
+</div>
 
 <script>
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const navbar = document.getElementById('navbar');
-  const hamburgerIcon = document.getElementById('hamburger-icon');
-  const closeIcon = document.getElementById('close-icon');
+  // Gallery Modal handlers
+  const galleryOverlay = document.createElement('div');
+  galleryOverlay.id = 'gallery-modal-overlay';
+  galleryOverlay.className = 'fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50';
+  galleryOverlay.style.display = 'none';
+  galleryOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.4)';
+  galleryOverlay.innerHTML = `
+    <div class="bg-gray-900 rounded-lg p-6 w-11/12 md:w-2/3 lg:w-1/2 text-white max-h-[90vh] overflow-y-auto border-1 border-fuchsia-600">
+      <button id="gallery-modal-close" class="float-right text-gray-400 text-2xl cursor-pointer hover:text-gray-200 transition"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" 
+        fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x">
+        <path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+      <div class="clear-both"></div>
+      <h2 id="gallery-modal-title" class="text-2xl font-bold mb-4"></h2>
+      <img id="gallery-modal-image" src="" alt="" class="w-full rounded-lg mb-4" />
+      <p id="gallery-modal-desc" class="text-gray-300"></p>
+    </div>
+  `;
+  document.body.appendChild(galleryOverlay);
 
-  hamburger.addEventListener('click', function() {
-    const isOpen = mobileMenu.classList.contains('flex');
-    
-    if (!isOpen) {
-      // Open menu
-      mobileMenu.classList.remove('hidden');
-      mobileMenu.classList.add('flex', 'mobile-menu-transition');
-      hamburgerIcon.classList.add('active');
-      closeIcon.classList.add('active');
-    } else {
-      // Close menu
-      mobileMenu.classList.add('hidden');
-      mobileMenu.classList.remove('flex');
-      hamburgerIcon.classList.remove('active');
-      closeIcon.classList.remove('active');
-    }
-  });
+  const galleryModalOverlay = document.getElementById('gallery-modal-overlay');
+  const galleryModalTitle = document.getElementById('gallery-modal-title');
+  const galleryModalImage = document.getElementById('gallery-modal-image');
+  const galleryModalDesc = document.getElementById('gallery-modal-desc');
 
-  // Close mobile menu when a link is clicked
-  const mobileLinks = mobileMenu.querySelectorAll('a');
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      mobileMenu.classList.add('hidden');
-      mobileMenu.classList.remove('flex');
-      hamburgerIcon.classList.remove('active');
-      closeIcon.classList.remove('active');
+  // Handle gallery card clicks
+  document.querySelectorAll('.gallery-card').forEach(card => {
+    card.addEventListener('click', () => {
+      galleryModalTitle.innerText = card.dataset.galleryTitle;
+      galleryModalImage.src = card.dataset.galleryImage;
+      galleryModalImage.alt = card.dataset.galleryTitle;
+      galleryModalDesc.innerText = card.dataset.galleryDesc;
+      galleryModalOverlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
     });
   });
 
-  // Navbar scroll effect - Transparent when scrolling
-  let ticking = false;
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      window.requestAnimationFrame(function() {
-        if (window.scrollY > 50) {
-          navbar.style.opacity = '0.8';
-          navbar.style.backdropFilter = 'blur(4px)';
-          navbar.classList.remove('shadow-lg');
-        } else {
-          navbar.style.opacity = '1';
-          navbar.style.backdropFilter = 'blur(12px)';
-          navbar.classList.add('shadow-lg');
-        }
-        ticking = false;
-      });
-      ticking = true;
+  document.getElementById('gallery-modal-close').addEventListener('click', () => {
+    galleryModalOverlay.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  });
+
+  // Close modal jika klik di luar modal
+  galleryModalOverlay.addEventListener('click', (e) => {
+    if (e.target === galleryModalOverlay) {
+      galleryModalOverlay.style.display = 'none';
+      document.body.style.overflow = 'auto';
     }
   });
 </script>
+
+@endsection
 

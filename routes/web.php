@@ -3,20 +3,22 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-
-// Authentication Routes
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'login'])->middleware('guest');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
-
-Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register')->middleware('guest');
-Route::post('/register', [RegisterController::class, 'register'])->middleware('guest');
+use App\Http\Controllers\Auth\UserAuthController;
 
 Route::middleware('check.not.admin')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('home');
 
     // Order routes for users
     Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+});
+
+// User Auth Routes
+Route::get('/login', [UserAuthController::class, 'showLogin'])->name('user.login');
+Route::post('/login', [UserAuthController::class, 'login'])->name('user.login.store');
+Route::get('/register', [UserAuthController::class, 'showRegister'])->name('user.register');
+Route::post('/register', [UserAuthController::class, 'register'])->name('user.register.store');
+
+// User Logout (Protected)
+Route::middleware('auth')->group(function () {
+    Route::get('/logout', [UserAuthController::class, 'logout'])->name('user.logout');
 });
