@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\GalleryController;
-use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\AdminOrderController;
 
 // Route Login Admin
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('admin.login');
@@ -17,13 +17,14 @@ Route::middleware(['auth.admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     // CRUD Game / Layanan Joki
-    Route::resource('/games', GameController::class, ['as' => 'admin']);
+    Route::resource('games', GameController::class, ['as' => 'admin']);
 
     // CRUD Galeri
-    Route::resource('/galleries', GalleryController::class, ['as' => 'admin']);
+    Route::resource('galleries', GalleryController::class, ['as' => 'admin']);
 
-    // Order management
-    Route::resource('/orders', OrderController::class, ['as' => 'admin']);
+    // Order management for admin
+    Route::get('/orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
+    Route::patch('/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.status');
 });
 
 

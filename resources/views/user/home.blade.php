@@ -108,7 +108,7 @@
         <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             @forelse($games as $game)
                 <!-- Service Card -->
-                <div class="relative group overflow-hidden rounded-2xl h-64 sm:h-72 md:h-80 lg:h-96 cursor-pointer" data-aos="fade-up" data-aos-duration="1000">
+                <div class="relative group overflow-hidden rounded-2xl h-80 sm:h-80 md:h-80 lg:h-96 cursor-pointer" data-aos="fade-up" data-aos-duration="1000">
                     <!-- Background Image -->
                     <div class="absolute inset-0">
                         @if($game->image)
@@ -135,17 +135,25 @@
                             <!-- Game Name -->
                             <div>
                                 <h3 class="text-[#FFEE2F] font-bold text-2xl mb-2 truncate">{{ $game->name }}</h3>
-                                <!-- Description as subtitle -->
-                                <p class="text-white text-sm line-clamp-2 leading-tight">{{ $game->description }}</p>
                             </div>
 
                             <!-- Price -->
                             <p class="text-pink-400 font-bold text-lg">
-                                Mulai {{ number_format($game->price, 0, ',', '.') }}
+                                Mulai Rp {{ number_format($game->price, 0, ',', '.') }}/hari
                             </p>
 
+                            <!-- Order Button -->
+                            <button type="button" class="order-btn block w-full bg-linear-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white text-center py-3 rounded-lg font-bold text-sm transition duration-300 transform hover:scale-105"
+                                data-game-id="{{ $game->id }}"
+                                data-game-name="{{ $game->name }}"
+                                data-game-price="{{ $game->price }}"
+                                data-rank-from="{{ $game->rank_from ?? '' }}"
+                                data-rank-to="{{ $game->rank_to ?? '' }}">
+                                Pesan Sekarang
+                            </button>
+
                             <!-- Detail Button -->
-                            <a href="#" class="block w-full bg-gray-400 hover:bg-gray-500 text-black text-center py-3 rounded-lg font-bold text-sm transition duration-300 transform hover:scale-105">
+                            <a href="{{ route('user.game.detail', $game->id) }}" class="block w-full bg-gray-400 hover:bg-gray-500 text-black text-center py-2 rounded-lg font-bold text-sm transition duration-300 transform hover:scale-105">
                                 Lihat Detail
                             </a>
                         </div>
@@ -213,9 +221,50 @@
 </div>
 
 {{-- kontak --}}
-<div id="kontak" class="bg-linear-to-r from-layanan1 to-layanan2 py-12 md:py-20">
-    <h1 class="text-center text-gray-100 font-bold text-2xl mb-4">Hubungi Kami</h1>
-    <p class="text-center text-lg text-gray-300 mb-12 font-display">Siap untuk meningkatkan performa game Anda? Hubungi kami sekarang!</p>
+<div id="kontak" class="bg-linear-to-r from-ungutuwak to-layanan2 py-12 md:py-20">
+    <div class="container mx-auto px-6">
+        <h1 class="text-center text-gray-100 font-bold text-2xl mb-4">Hubungi Kami</h1>
+        <p class="text-center text-lg text-gray-300 mb-12 font-display">Siap untuk meningkatkan performa game Anda? Hubungi kami sekarang!</p>
+        
+        <!-- Contact Methods Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <!-- Whatsapp -->
+            <a href="https://wa.me/your-number" target="_blank" class="group bg-gray-800 bg-opacity-50 border border-purple-600 rounded-lg p-6 hover:shadow-lg hover:shadow-purple-600 transition delay-200 duration-400 ease-in-out hover:-translate-y-1 hover:scale-105 cursor-pointer text-center h-32 flex flex-col items-center justify-center"
+                data-aos="fade-up" data-aos-duration="1000">
+                <div class="flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-white transition">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </div>
+                <h3 class="text-white font-bold text-lg group-hover:text-white">Whatsapp</h3>
+            </a>
+
+            <!-- Email -->
+            <a href="mailto:your-email@example.com" class="group bg-gray-800 bg-opacity-50 border border-purple-600 rounded-lg p-6 hover:shadow-lg hover:shadow-purple-600 transition delay-200 duration-400 ease-in-out hover:-translate-y-1 hover:scale-105 cursor-pointer text-center h-32 flex flex-col items-center justify-center"
+                data-aos="fade-up" data-aos-duration="1000">
+                <div class="flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-white transition">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                </div>
+                <h3 class="text-white font-bold text-lg group-hover:text-white">Email</h3>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/ayser_nii/" target="_blank" class="group bg-gray-800 bg-opacity-50 border border-purple-600 rounded-lg p-6 hover:shadow-lg hover:shadow-purple-600 transition delay-200 duration-400 ease-in-out hover:-translate-y-1 hover:scale-105 cursor-pointer text-center h-32 flex flex-col items-center justify-center"
+                data-aos="fade-up" data-aos-duration="1000">
+                <div class="flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-white transition">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <circle cx="17.5" cy="6.5" r="1.5"/>
+                    </svg>
+                </div>
+                <h3 class="text-white font-bold text-lg group-hover:text-white">Instagram</h3>
+            </a>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -264,6 +313,212 @@
   galleryModalOverlay.addEventListener('click', (e) => {
     if (e.target === galleryModalOverlay) {
       galleryModalOverlay.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  });
+
+  // ===== LOGIN REQUIRED MODAL =====
+  const loginRequiredModal = document.createElement('div');
+  loginRequiredModal.id = 'login-required-modal';
+  loginRequiredModal.className = 'fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50';
+  loginRequiredModal.style.display = 'none';
+  loginRequiredModal.style.backgroundColor = 'rgba(0, 0, 0, 0.4)';
+  loginRequiredModal.innerHTML = `
+    <div class="bg-gray-900 rounded-lg p-8 w-11/12 md:w-1/2 lg:w-1/3 text-white border border-purple-600">
+      <div class="text-center mb-6">
+        <svg class="w-16 h-16 mx-auto mb-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+        <h2 class="text-2xl font-bold mb-2">Login Diperlukan</h2>
+        <p class="text-gray-400">Anda perlu login untuk membuat pesanan</p>
+      </div>
+
+      <div class="space-y-4">
+        <a href="{{ route('user.login') }}" class="block w-full bg-linear-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white text-center py-3 rounded-lg font-bold transition duration-300">
+          Login
+        </a>
+        <p class="text-center text-gray-400">
+          Belum punya akun? 
+          <a href="{{ route('user.register') }}" class="text-purple-400 hover:text-purple-300 font-bold">Daftar di sini</a>
+        </p>
+      </div>
+
+      <button class="mt-6 w-full text-gray-400 hover:text-gray-200 transition" onclick="document.getElementById('login-required-modal').style.display = 'none'; document.body.style.overflow = 'auto';">
+        Tutup
+      </button>
+    </div>
+  `;
+  document.body.appendChild(loginRequiredModal);
+
+  // ===== ORDER MODAL =====
+  const orderModal = document.createElement('div');
+  orderModal.id = 'order-modal';
+  orderModal.className = 'fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50';
+  orderModal.style.display = 'none';
+  orderModal.style.backgroundColor = 'rgba(0, 0, 0, 0.4)';
+  orderModal.innerHTML = `
+    <div class="bg-gray-900 rounded-lg p-8 w-11/12 md:w-1/2 lg:w-2/5 text-white max-h-[90vh] overflow-y-auto border border-purple-600">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">Pesan <span id="order-game-name" class="text-pink-400"></span></h2>
+        <button onclick="document.getElementById('order-modal').style.display = 'none'; document.body.style.overflow = 'auto';" class="text-gray-400 text-2xl cursor-pointer hover:text-gray-200 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <form id="order-form" method="POST" action="{{ route('orders.store') }}" class="space-y-4">
+        @csrf
+
+        <!-- Hidden Game ID -->
+        <input type="hidden" id="order-game-id" name="game_id">
+
+        <!-- Current Rank (Display Only) -->
+        <div id="rank-container" style="display: none;">
+          <label class="block text-sm font-bold mb-2 flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Target Rank</label>
+          <div class="bg-gray-800 border border-purple-600 rounded-lg p-3">
+            <p class="text-white">
+              <span class="font-bold" id="rank-from-display">-</span>
+              <span class="mx-2">→</span>
+              <span class="font-bold" id="rank-to-display">-</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Start Date -->
+        <div>
+          <label class="block text-sm font-bold mb-2 flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Tanggal Mulai</label>
+          <input type="date" id="start-date" name="start_date" required 
+            class="w-full bg-gray-800 border border-purple-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-600">
+        </div>
+
+        <!-- End Date -->
+        <div>
+          <label class="block text-sm font-bold mb-2 flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Tanggal Selesai</label>
+          <input type="date" id="end-date" name="end_date" required 
+            class="w-full bg-gray-800 border border-purple-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-600">
+        </div>
+
+        <!-- Duration Display -->
+        <div class="bg-gray-800 border border-purple-600 rounded-lg p-4">
+          <p class="text-sm text-gray-400 flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg>Durasi Pesanan</p>
+          <p id="duration-display" class="text-xl font-bold text-pink-400">-</p>
+        </div>
+
+        <!-- Price Display -->
+        <div class="bg-gray-800 border border-purple-600 rounded-lg p-4">
+          <p class="text-sm text-gray-400 flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>Total Harga</p>
+          <p id="price-display" class="text-2xl font-bold text-yellow-400">Rp 0</p>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full bg-linear-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white font-bold py-3 rounded-lg transition duration-300 transform hover:scale-105">
+          ✅ Konfirmasi Pesanan
+        </button>
+      </form>
+    </div>
+  `;
+  document.body.appendChild(orderModal);
+
+  // ===== ORDER BUTTON HANDLERS =====
+  const orderBtns = document.querySelectorAll('.order-btn');
+  const isAuthenticated = {{ Auth::check() ? 'true' : 'false' }};
+
+  orderBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      if (!isAuthenticated) {
+        document.getElementById('login-required-modal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        return;
+      }
+
+      const gameId = btn.dataset.gameId;
+      const gameName = btn.dataset.gameName;
+      const gamePrice = parseInt(btn.dataset.gamePrice);
+      const rankFrom = btn.dataset.rankFrom;
+      const rankTo = btn.dataset.rankTo;
+
+      // Reset form
+      document.getElementById('order-form').reset();
+      document.getElementById('order-game-id').value = gameId;
+      document.getElementById('order-game-name').innerText = gameName;
+      document.getElementById('start-date').value = '';
+      document.getElementById('end-date').value = '';
+      document.getElementById('duration-display').innerText = '-';
+      document.getElementById('price-display').innerText = 'Rp 0';
+
+      // Handle rank display
+      const rankContainer = document.getElementById('rank-container');
+      if (rankFrom && rankTo) {
+        document.getElementById('rank-from-display').innerText = rankFrom;
+        document.getElementById('rank-to-display').innerText = rankTo;
+        rankContainer.style.display = 'block';
+      } else {
+        rankContainer.style.display = 'none';
+      }
+
+      // Store game price untuk perhitungan
+      window.currentGamePrice = gamePrice;
+
+      // Set minimum date to today
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const day = String(today.getDate()).padStart(2, '0');
+      const minDate = `${year}-${month}-${day}`;
+      
+      document.getElementById('start-date').setAttribute('min', minDate);
+      document.getElementById('end-date').setAttribute('min', minDate);
+
+      document.getElementById('order-modal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  // ===== PRICE CALCULATOR =====
+  const startDateInput = document.getElementById('start-date');
+  const endDateInput = document.getElementById('end-date');
+  const durationDisplay = document.getElementById('duration-display');
+  const priceDisplay = document.getElementById('price-display');
+
+  function calculatePrice() {
+    if (!startDateInput.value || !endDateInput.value) return;
+
+    const startDate = new Date(startDateInput.value);
+    const endDate = new Date(endDateInput.value);
+
+    if (endDate < startDate) {
+      durationDisplay.innerText = 'Tanggal tidak valid';
+      return;
+    }
+
+    const duration = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+    const totalPrice = duration * window.currentGamePrice;
+
+    durationDisplay.innerText = duration + ' hari';
+    priceDisplay.innerText = 'Rp ' + totalPrice.toLocaleString('id-ID');
+  }
+
+  startDateInput.addEventListener('change', () => {
+    endDateInput.setAttribute('min', startDateInput.value);
+    calculatePrice();
+  });
+
+  endDateInput.addEventListener('change', calculatePrice);
+
+  // Close modals when clicking outside
+  document.getElementById('login-required-modal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('login-required-modal')) {
+      document.getElementById('login-required-modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  });
+
+  document.getElementById('order-modal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('order-modal')) {
+      document.getElementById('order-modal').style.display = 'none';
       document.body.style.overflow = 'auto';
     }
   });

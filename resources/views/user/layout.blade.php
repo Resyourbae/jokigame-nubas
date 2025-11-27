@@ -29,51 +29,74 @@
 </head>
 <body class="pt-0">
     {{-- Navbar --}}
+    @if(!request()->routeIs('user.login', 'user.register'))
     <nav id="navbar" class="fixed top-0 left-0 right-0 w-full z-50 bg-linear-to-r from-ungutuwak to-unguagakmuda px-6 py-4 border-b border-b-fuchsia-600 opacity-100 shadow-lg backdrop-blur-md">
         <div class="flex items-center justify-between gap-6">
             <!-- Logo -->
-            <div class="flex items-center gap-2 shrink-0">
+            <a href="{{ route('home') }}" class="flex items-center gap-2 shrink-0 cursor-pointer hover:opacity-80 transition">
                 <img src="/logo.png" alt="logo" class="w-10 h-10">
-                <span class="text-[#FFEE2F] font-bold italic font-display text-lg whitespace-nowrap">Reszz Joki</span>
-            </div>
+                <span class="text-[#FFEE2F] font-bold italic font-display text-xl whitespace-nowrap">Reszz Joki</span>
+            </a>
 
             <!-- Hamburger Menu (Mobile) -->
-            <button id="hamburger" class="lg:hidden flex items-center justify-center cursor-pointer relative w-7 h-7">
-                <!-- Hamburger Icon -->
-                <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute transition-all duration-300">
-                    <path d="M4 6h16"/>
-                    <path d="M4 12h16"/>
-                    <path d="M4 18h16"/>
-                </svg>
+            @if(!request()->routeIs('user.game.detail', 'orders.index'))
+                <button id="hamburger" class="lg:hidden flex items-center justify-center cursor-pointer relative w-7 h-7">
+                    <!-- Hamburger Icon -->
+                    <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute transition-all duration-300">
+                        <path d="M4 6h16"/>
+                        <path d="M4 12h16"/>
+                        <path d="M4 18h16"/>
+                    </svg>
 
-                <!-- Close Icon -->
-                <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute transition-all duration-300 opacity-0 scale-0 rotate-90">
-                    <path d="M18 6l-12 12"/>
-                    <path d="M6 6l12 12"/>
-                </svg>
-            </button>
+                    <!-- Close Icon -->
+                    <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute transition-all duration-300 opacity-0 scale-0 rotate-90">
+                        <path d="M18 6l-12 12"/>
+                        <path d="M6 6l12 12"/>
+                    </svg>
+                </button>
+            @endif
 
             <!-- Menu Desktop -->
-            <ul class="hidden lg:flex space-x-8 text-gray-200 flex-1 justify-center">
-                <li><a href="{{ route('home') }}" class="hover:text-yellow-400 transition" data-scroll-to="home">Beranda</a></li>
-                <li><a href="{{ route('home') }}#tentang-kami" class="hover:text-yellow-400 transition" data-scroll-to="tentang-kami">Tentang</a></li>
-                <li><a href="{{ route('home') }}#layanan" class="hover:text-yellow-400 transition" data-scroll-to="layanan">Layanan</a></li>
-                <li><a href="{{ route('home') }}#galeri" class="hover:text-yellow-400 transition" data-scroll-to="galeri">Galeri</a></li>
-                <li><a href="{{ route('home') }}#kontak" class="hover:text-yellow-400 transition" data-scroll-to="kontak">Kontak</a></li>
-            </ul>
+            @if(!request()->routeIs('user.game.detail', 'orders.index'))
+                <ul class="hidden lg:flex space-x-8 text-gray-200 flex-1 justify-center">
+                    <li><a href="{{ route('home') }}" class="hover:text-yellow-400 transition" data-scroll-to="home">Beranda</a></li>
+                    <li><a href="{{ route('home') }}#tentang-kami" class="hover:text-yellow-400 transition" data-scroll-to="tentang-kami">Tentang</a></li>
+                    <li><a href="{{ route('home') }}#layanan" class="hover:text-yellow-400 transition" data-scroll-to="layanan">Layanan</a></li>
+                    <li><a href="{{ route('home') }}#galeri" class="hover:text-yellow-400 transition" data-scroll-to="galeri">Galeri</a></li>
+                    <li><a href="{{ route('home') }}#kontak" class="hover:text-yellow-400 transition" data-scroll-to="kontak">Kontak</a></li>
+                </ul>
+            @endif
 
             <!-- User Menu Desktop -->
             @auth
-                <div class="hidden lg:flex items-center gap-4 shrink-0">
+                <div class="hidden lg:flex items-center gap-5 shrink-0">
+                    <!-- Shopping Cart Icon -->
+                    <a href="{{ route('orders.index') }}" class="relative flex items-center justify-center w-11 h-11 rounded-full text-white hover:text-yellow-400 font-bold transition hover:scale-110 duration-300" title="Keranjang Pesanan">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                    </a>
+
                     <!-- Profile Dropdown -->
                     <div class="relative group">
-                        <button class="flex items-center justify-center w-10 h-10 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold transition text-sm">
+                        <button class="flex items-center justify-center w-11 h-11 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold transition text-sm hover:scale-110 hover:shadow-lg hover:shadow-purple-500/50 duration-300 border-2 border-purple-400/50">
                             {{ substr(Auth::user()->name, 0, 1) }}
                         </button>
                         
                         <!-- Dropdown Menu -->
-                        <div class="absolute right-0 mt-2 w-48 bg-gray-900 border border-purple-600 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                            <a href="{{ route('user.logout') }}" class="block px-4 py-3 text-gray-300 hover:bg-red-600 hover:text-white rounded-lg transition">
+                        <div class="absolute right-0 mt-3 w-52 bg-linear-to-b from-gray-800 to-gray-900 border border-purple-600/50 rounded-xl shadow-2xl shadow-purple-900/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 backdrop-blur-sm">
+                            <div class="p-3 border-b border-purple-600/30">
+                                <p class="text-sm text-gray-400">Halo,</p>
+                                <p class="text-white font-bold text-lg truncate">{{ Auth::user()->name }}</p>
+                            </div>
+                            <a href="{{ route('user.logout') }}" class="flex mx-2 mt-3 mb-2 px-4 py-3 text-gray-300 hover:bg-linear-to-r hover:from-red-600 hover:to-red-700 hover:text-white rounded-lg transition duration-200 font-medium items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                    <polyline points="16 17 21 12 16 7"></polyline>
+                                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                                </svg>
                                 Logout
                             </a>
                         </div>
@@ -82,10 +105,10 @@
             @else
                 <!-- Login/Register Buttons Desktop -->
                 <div class="hidden lg:flex items-center gap-3 shrink-0">
-                    <a href="{{ route('user.login') }}" class="bg-purple-600 hover:bg-purple-700 text-white font-medium px-5 py-2 rounded-md transition">
+                    <a href="{{ route('user.login') }}" class="bg-purple-600 hover:bg-purple-700 text-white font-medium px-6 py-2 rounded-lg transition duration-300 hover:shadow-lg hover:shadow-purple-600/50 transform hover:scale-105">
                         Login
                     </a>
-                    <a href="{{ route('user.register') }}" class="bg-yellow-400 hover:bg-yellow-300 text-black font-medium px-5 py-2 rounded-md transition">
+                    <a href="{{ route('user.register') }}" class="bg-linear-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-medium px-6 py-2 rounded-lg transition duration-300 hover:shadow-lg hover:shadow-yellow-400/50 transform hover:scale-105">
                         Daftar
                     </a>
                 </div>
@@ -93,20 +116,24 @@
         </div>
 
         <!-- Menu Mobile -->
-        <ul id="mobile-menu" class="hidden flex-col space-y-3 mt-4 text-gray-200 lg:hidden mobile-menu-transition">
-            <li><a href="{{ route('home') }}" class="block hover:text-yellow-400 transition py-2" data-scroll-to="home">Beranda</a></li>
-            <li><a href="{{ route('home') }}#tentang-kami" class="block hover:text-yellow-400 transition py-2" data-scroll-to="tentang-kami">Tentang</a></li>
-            <li><a href="{{ route('home') }}#layanan" class="block hover:text-yellow-400 transition py-2" data-scroll-to="layanan">Layanan</a></li>
-            <li><a href="{{ route('home') }}#galeri" class="block hover:text-yellow-400 transition py-2" data-scroll-to="galeri">Galeri</a></li>
-            <li><a href="{{ route('home') }}#kontak" class="block hover:text-yellow-400 transition py-2" data-scroll-to="kontak">Kontak</a></li>
-            @auth
-                <li><a href="{{ route('user.logout') }}" class="block bg-red-600 hover:bg-red-700 text-white font-medium px-4 py-2 rounded-md transition text-center">Logout</a></li>
-            @else
-                <li><a href="{{ route('user.login') }}" class="block bg-purple-600 hover:bg-purple-700 text-white font-medium px-4 py-2 rounded-md transition text-center">Login</a></li>
-                <li><a href="{{ route('user.register') }}" class="block w-full bg-yellow-400 text-black font-medium px-4 py-2 rounded-md hover:bg-yellow-300 transition text-center">Daftar</a></li>
-            @endauth
-        </ul>
+        @if(!request()->routeIs('user.game.detail', 'orders.index'))
+            <ul id="mobile-menu" class="hidden flex-col space-y-3 mt-4 text-gray-200 lg:hidden mobile-menu-transition">
+                <li><a href="{{ route('home') }}" class="block hover:text-yellow-400 transition py-2" data-scroll-to="home">Beranda</a></li>
+                <li><a href="{{ route('home') }}#tentang-kami" class="block hover:text-yellow-400 transition py-2" data-scroll-to="tentang-kami">Tentang</a></li>
+                <li><a href="{{ route('home') }}#layanan" class="block hover:text-yellow-400 transition py-2" data-scroll-to="layanan">Layanan</a></li>
+                <li><a href="{{ route('home') }}#galeri" class="block hover:text-yellow-400 transition py-2" data-scroll-to="galeri">Galeri</a></li>
+                <li><a href="{{ route('home') }}#kontak" class="block hover:text-yellow-400 transition py-2" data-scroll-to="kontak">Kontak</a></li>
+                @auth
+                    <li><a href="{{ route('orders.index') }}" class="block bg-linear-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium px-4 py-2 rounded-lg transition text-center">🛒 Pesanan Saya</a></li>
+                    <li><a href="{{ route('user.logout') }}" class="block bg-linear-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium px-4 py-2 rounded-lg transition text-center">← Logout</a></li>
+                @else
+                    <li><a href="{{ route('user.login') }}" class="block bg-purple-600 hover:bg-purple-700 text-white font-medium px-4 py-2 rounded-lg transition text-center">Login</a></li>
+                    <li><a href="{{ route('user.register') }}" class="block w-full bg-yellow-400 text-black font-medium px-4 py-2 rounded-md hover:bg-yellow-300 transition text-center">Daftar</a></li>
+                @endauth
+            </ul>
+        @endif
     </nav>
+    @endif
 
     <style>
         .mobile-menu-transition {
@@ -235,6 +262,10 @@
     <!-- Main Content -->
     @yield('content')
 
+    {{-- footer - hanya tampil di home page --}}
+    @if(request()->routeIs('home'))
+        @include('user.footer')
+    @endif
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();

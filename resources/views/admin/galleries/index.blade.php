@@ -7,20 +7,24 @@
     <title>Kelola Galeri - Admin Dashboard</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-gray-50 text-gray-100">
+<body class="bg-linear-to-br from-slate-50 via-white to-blue-50 text-gray-900">
     <!-- Navigation -->
-    <nav class="bg-linear-to-r from-ungutuwak to-unguagakmuda px-6 py-4 shadow-lg border-b border-purple-600">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <nav class="bg-linear-to-r from-purple-900 to-blue-900 shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <h1 class="text-2xl font-bold font-display italic text-[#FFEE2F]">Ressz Joki <span class="text-[#f8a809]">Admin</span></h1>
+                <img src="{{ asset('logo.png') }}" alt="Ressz Joki Logo" class="h-10 w-10 object-contain">
+                <h1 class="text-xl font-bold text-white">Ressz Joki Admin</h1>
             </div>
             <div class="flex items-center gap-4">
-                <span class="text-gray-200">Welcome, Admin!</span>
-                <a href="{{ route('admin.logout') }}" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition flex items-center gap-2">
+                <div class="flex items-center gap-2 text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user text-yellow-300">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    <span class="text-white">Admin</span>
+                </div>
+                <a href="{{ route('admin.logout') }}" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition flex items-center gap-2 font-medium text-sm">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out">
-                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                        <polyline points="16 17 21 12 16 7"/>
-                        <line x1="21" x2="9" y1="12" y2="12"/>
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/>
                     </svg>
                     Logout
                 </a>
@@ -30,43 +34,29 @@
 
     <div class="flex">
         <!-- Sidebar -->
-        <aside class="w-64 bg-gray-800 border-r border-purple-600 min-h-screen">
-            <nav class="p-6 space-y-4">
-                <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-700 font-semibold transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-icon lucide-package">
-                        <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/>
-                        <path d="M12 22V12"/>
-                        <polyline points="3.29 7 12 12 20.71 7"/>
-                        <path d="m7.5 4.27 9 5.15"/>
+        <aside class="w-72 bg-white border-r border-gray-200 min-h-screen pt-8 px-6 fixed h-screen overflow-y-auto z-40">
+            <nav class="space-y-2">
+                <a href="{{ route('admin.dashboard') }}" class="block w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-purple-50 group font-medium cursor-pointer pointer-events-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home text-purple-600 group-hover:scale-110">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
                     </svg>
                     Dashboard
                 </a>
-                <a href="{{ route('admin.games.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-700 font-semibold transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gamepad2-icon lucide-gamepad-2">
-                        <line x1="6" x2="10" y1="11" y2="11"/>
-                        <line x1="8" x2="8" y1="9" y2="13"/>
-                        <line x1="15" x2="15.01" y1="12" y2="12"/>
-                        <line x1="18" x2="18.01" y1="10" y2="10"/>
-                        <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/>
+                <a href="{{ route('admin.games.index') }}" class="block w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-purple-50 group font-medium cursor-pointer pointer-events-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gamepad-2 text-purple-600 group-hover:scale-110">
+                        <line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/>
                     </svg>
                     Kelola Game
                 </a>
-                <a href="{{ route('admin.galleries.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-purple-600 text-white font-semibold hover:bg-purple-700 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-image-icon lucide-image">
-                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                        <circle cx="9" cy="9" r="2"/>
-                        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                <a href="{{ route('admin.galleries.index') }}" class="block w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-linear-to-r from-blue-600 to-cyan-600 text-white font-semibold hover:shadow-lg group cursor-pointer pointer-events-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-image-gallery group-hover:scale-110">
+                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
                     </svg>
                     Kelola Galeri
                 </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-700 font-semibold transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-icon lucide-list">
-                        <line x1="8" x2="21" y1="6" y2="6"/>
-                        <line x1="8" x2="21" y1="12" y2="12"/>
-                        <line x1="8" x2="21" y1="18" y2="18"/>
-                        <line x1="3" x2="3.01" y1="6" y2="6"/>
-                        <line x1="3" x2="3.01" y1="12" y2="12"/>
-                        <line x1="3" x2="3.01" y1="18" y2="18"/>
+                <a href="{{ route('admin.orders.index') }}" class="block w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-cyan-50 group font-medium cursor-pointer pointer-events-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list text-cyan-600 group-hover:scale-110">
+                        <rect x="8" y="2" width="12" height="4" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 9h6"/><path d="M9 13h6"/><path d="M9 17h3"/>
                     </svg>
                     Lihat Order
                 </a>
@@ -74,59 +64,78 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 p-8">
+        <main class="flex-1 ml-72 p-8">
             <!-- Header -->
             <div class="flex items-center justify-between mb-8">
                 <div>
-                    <h2 class="text-3xl font-bold text-[#FFEE2F]">Kelola Galeri</h2>
-                    <p class="text-gray-400 mt-1">Manage semua galeri portofolio Anda</p>
+                    <h2 class="text-4xl font-bold bg-linear-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">Kelola Galeri</h2>
+                    <p class="text-gray-600 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-image-gallery text-blue-600">
+                            <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                        </svg>
+                        Manage semua galeri portofolio Anda
+                    </p>
                 </div>
-                <a href="{{ route('admin.galleries.create') }}" class="bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-6 py-3 rounded-lg transition font-semibold">
-                    ➕ Tambah Galeri
+                <a href="{{ route('admin.galleries.create') }}" class="group bg-linear-to-br from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-6 py-3 rounded-xl transition font-semibold flex items-center gap-2 text-white hover:shadow-lg shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus group-hover:rotate-90 transition duration-300">
+                        <path d="M5 12h14"/><path d="M12 5v14"/>
+                    </svg>
+                    Tambah Galeri
                 </a>
             </div>
 
             <!-- Success Message -->
             @if (session('success'))
-                <div class="mb-6 p-4 bg-green-500 bg-opacity-20 border border-green-500 rounded-lg">
-                    <p class="text-green-400">{{ session('success') }}</p>
+                <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-green-600">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    <p class="text-green-700 font-medium">{{ session('success') }}</p>
                 </div>
             @endif
 
             <!-- Gallery Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @forelse ($galleries as $gallery)
-                    <div class="bg-gray-900 border border-purple-600 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-purple-600 transition">
-                        <div class="bg-gray-800 h-48 overflow-hidden">
-                            <img src="{{ asset($gallery->image_path) }}" alt="{{ $gallery->title }}" class="w-full h-full object-cover hover:scale-105 transition">
+                    <div class="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-300 hover:shadow-xl transition duration-300">
+                        <div class="relative h-48 overflow-hidden bg-gray-100">
+                            <img src="{{ asset($gallery->image_path) }}" alt="{{ $gallery->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                            <div class="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
                         </div>
-                        <div class="p-4">
-                            <h3 class="text-lg font-bold text-white mb-2">{{ $gallery->title }}</h3>
-                            <p class="text-gray-400 text-sm mb-4">{{ substr($gallery->description, 0, 100) }}...</p>
-                            <div class="flex gap-2">
-                                <a href="{{ route('admin.galleries.edit', $gallery->id) }}" class="flex-1 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-center transition">
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">{{ $gallery->title }}</h3>
+                            <p class="text-gray-600 text-sm mb-4 line-clamp-2">{{ substr($gallery->description, 0, 100) }}...</p>
+                            <div class="flex gap-3">
+                                <a href="{{ route('admin.galleries.edit', $gallery->id) }}" class="flex-1 bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-4 py-2 rounded-lg text-center transition font-medium flex items-center justify-center gap-2 shadow-sm hover:shadow-md">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-edit">
+                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+                                    </svg>
                                     Edit
                                 </a>
-                                <form action="{{ route('admin.galleries.destroy', $gallery->id) }}" method="POST" class="flex-1">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="w-full bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition" onclick="return confirm('Yakin ingin menghapus?')">
-                                        Hapus
-                                    </button>
-                                </form>
+                                <button onclick="openDeleteModal({{ $gallery->id }}, '{{ $gallery->title }}')" class="flex-1 bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 px-4 py-2 rounded-lg transition font-medium flex items-center justify-center gap-2 border border-red-200">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash">
+                                        <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/>
+                                    </svg>
+                                    Hapus
+                                </button>
                             </div>
                         </div>
                     </div>
                 @empty
-                    <div class="col-span-full text-center py-12">
-                        <p class="text-gray-400">Belum ada galeri yang ditambahkan</p>
+                    <div class="col-span-full">
+                        <div class="bg-white border border-gray-200 rounded-2xl p-12 text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-image mx-auto mb-4 text-gray-400">
+                                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                            </svg>
+                            <p class="text-gray-600 font-medium">Belum ada galeri yang ditambahkan</p>
+                        </div>
                     </div>
                 @endforelse
             </div>
 
             <!-- Pagination -->
             @if ($galleries->hasPages())
-                <div class="mt-6">
+                <div class="mt-8">
                     {{ $galleries->links() }}
                 </div>
             @endif
@@ -137,6 +146,91 @@
         html {
             scroll-behavior: smooth;
         }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
     </style>
+
+    <!-- Delete Modal -->
+    <div id="deleteModal" class="fixed inset-0 bg-black/50 justify-center items-center z-50 p-4" style="display: none;">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full border border-gray-200 shadow-2xl">
+            <div class="flex items-center justify-center mb-6">
+                <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alert-circle">
+                        <circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <h2 class="text-2xl font-bold text-gray-900 text-center mb-2">Hapus Galeri</h2>
+            <p class="text-gray-600 text-center mb-6">
+                Apakah Anda yakin ingin menghapus galeri <span id="galleryName" class="font-semibold text-gray-900"></span>? 
+                <br>
+                <span class="text-sm">Tindakan ini tidak dapat dibatalkan.</span>
+            </p>
+
+            <div class="flex gap-3 pt-4">
+                <button onclick="closeDeleteModal()" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-900 py-3 rounded-lg font-semibold transition">
+                    Batal
+                </button>
+                <form id="deleteForm" method="POST" style="flex: 1;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition">
+                        Hapus
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let deleteGalleryId = null;
+
+        function openDeleteModal(galleryId, galleryName) {
+            deleteGalleryId = galleryId;
+            document.getElementById('galleryName').textContent = galleryName;
+            document.getElementById('deleteForm').action = `/admin/galleries/${galleryId}`;
+            document.getElementById('deleteModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('deleteModal')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDeleteModal();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('deleteModal').style.display === 'flex') {
+                closeDeleteModal();
+            }
+        });
+    </script>
 </body>
 </html>

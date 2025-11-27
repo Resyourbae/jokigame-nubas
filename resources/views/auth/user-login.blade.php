@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- Login Page -->
-<div class="min-h-screen bg-linear-to-r from-header1 to-header2 flex items-center justify-center px-6 py-12 pt-24">
+<div class="min-h-screen bg-linear-to-r from-header1 to-header2 flex items-center justify-center" style="overflow: hidden; max-height: 100vh;">
     <div class="w-full max-w-md">
         <!-- Card -->
         <div class="bg-gray-900 border border-purple-600 rounded-lg p-8 shadow-2xl">
